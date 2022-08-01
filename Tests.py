@@ -1,3 +1,4 @@
+from turtle import up
 import unittest
 import pytest
 from Vizualizer import Visualizer
@@ -13,11 +14,12 @@ class SequentialVisualizerTests(unittest.TestCase):
 
     
     def setUp(self) -> None:
-        model = Sequential()
-        model.add(Conv2D(32,5,strides=2,activation="relu"))
-        model.add(Conv2D(64,3,activation="relu"))
-        model.add(Dense(8, activation="relu"))
-        self.visualizer = Visualizer(model)
+        self.model = Sequential()
+        self.model.add(Conv2D(32,2, activation="relu"))
+        self.model.add(Conv2D(64,2,strides=(2,2), activation="relu"))
+        self.model.add(Conv2D(64,2, activation="relu"))
+        self.model.add(Dense(8,activation="relu"))
+        self.visualizer = Visualizer(self.model)
 
     def test_gen_feature_map_images(self):
         def test_gen_feature_maps():
@@ -36,11 +38,46 @@ class SequentialVisualizerTests(unittest.TestCase):
         
         feature_maps = test_gen_feature_maps()
         test_transform_feature_maps(feature_maps)
+    
+    def test_get_mean_diffs(self):
+        image = np.ones((320,320))
+        mean_diffs = self.visualizer.get_mean_diffs(image)
+        self.assertEqual(mean_diffs.flatten()[0], 0)
+    
+    def test_get_average_pixel_diffs(self):
+        layer_diffs = []
+        for num in range(8):
+            arr = np.random.rand(320, 320)
+            arr.fill(0.5)
+            layer_diffs.append(arr)
+        average_pixel_diffs = self.visualizer.get_average_pixel_diffs(layer_diffs)
+        self.assertEqual(average_pixel_diffs.flatten()[0], 0.5)
+    
+    def test_get_pixel_importances(self):
+        diffs = np.random.rand(320,320)
+        importances = self.visualizer.get_pixel_importances(diffs)
+        
+    def test_get_importance_images(self):
+        image = np.random.rand(320,320)
+        importance_images = self.visualizer.get_importance_images(image)
 
-    def test_apply_convolution(self):
-        image = np.ones((32,32))
-        image_after_conv = self.visualizer.apply_convolution(image)
-        self.assertEqual(image_after_conv[1,1], 4.0)
-        self.assertEqual(image_after_conv[30,30], 9.0)
+    def test_upscale_importances(self):
+        image = np.random.rand(320,320)
+        diffs = np.random.rand(16,16)
+        importances = self.visualizer.get_pixel_importances(diffs)
+        upscaled = self.visualizer.upscale_importances(image, importances)
+        self.assertEqual(upscaled.shape, (1, 288, 288, 1))
+    
+    def test_transpose_importances(self):
+        image = np.random.rand(1, 316, 316, 1)
+        input_image = np.random.rand(1, 320, 320, 1)
+        transposed_importances = self.visualizer.transpose_importances(input_image, image, self.model.layers)
+        self.assertEqual(input_image.shape, transposed_importances.shape)
 
+    def test_map_importance_images(self):
+        importances = self.visualizer.get_pixel_importances(np.random.rand(320, 320))
+        image = np.random.rand(320, 320)
+        importance_images = [image for image in self.visualizer.get_importance_images(image)]
+        output = self.visualizer.map_importance_images(importances, importance_images)
+    
 unittest.main()
