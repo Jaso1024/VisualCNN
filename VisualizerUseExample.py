@@ -25,10 +25,10 @@ y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
 model = load_model("MnistCNN")
+model.summary()
 
 visualizer = Visualizer(model)
-for num in range(10):
-    visualizer.heatmap(x_test[num])
-    visualizer.show_heatmap()
+visualizer.heatmap(x_test[0])
+visualizer.show_heatmap()
 
 

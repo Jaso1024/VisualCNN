@@ -1,6 +1,7 @@
+import warnings
 
-
-
+class SmallConvolutionWarning(UserWarning):
+    pass
 
 class OutputBiggerThanInputError(Exception):
     pass
@@ -19,3 +20,7 @@ class NanLayerOutputError(Exception):
 
 class InvalidTypeError(Exception):
     pass
+
+class SizeTooSmall(Exception):
+    pass
+
