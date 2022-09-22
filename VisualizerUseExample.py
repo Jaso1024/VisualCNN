@@ -24,8 +24,19 @@ x_test = np.expand_dims(x_test, -1)
 y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
-model = load_model("MnistCNN")
+model = Sequential()
+model.add(Conv2D(32, (3,3), 2, padding="same"))
+model.add(Conv2D(32, (3,3), 2, padding="same"))
+model.add(Conv2D(32, (3,3), 1, padding="same"))
+model.add(Conv2D(32, (3,3), 1, padding="same"))
+model.add(Flatten())
+model.add(Dense(128, activation="relu"))
+model.add(Dense(10, activation="sigmoid"))
+model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])
+model.fit(x_train, y_train, epochs=5, batch_size=32, verbose=1)
 model.summary()
+
+
 
 visualizer = Visualizer(model)
 visualizer.heatmap(x_test[0])
