@@ -24,11 +24,11 @@ Using Keras' MNIST dataset with a tensorflow model whose summary looks like the 
 
                      dense_1 (Dense)           (None, 10)                 1290
 
-                    =================================================================
-                                         Total params: 1,663,306
-                                       Trainable params: 1,663,306
-                                         Non-trainable params: 0
-                    _________________________________________________________________
+                   =================================================================
+                                        Total params: 1,663,306
+                                      Trainable params: 1,663,306
+                                        Non-trainable params: 0
+                   _________________________________________________________________
  ```
 
 <p align="center">
