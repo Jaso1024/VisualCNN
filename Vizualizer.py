@@ -2,7 +2,6 @@ import tensorflow as tf
 from tensorflow import keras
 from keras.models import Model, Sequential
 from keras.layers import Dense, Conv2D, Conv2DTranspose, MaxPooling2D, UpSampling2D
-
 import cv2
 import numpy as np
 import skimage
@@ -227,12 +226,18 @@ class Visualizer():
     def blurmap(self, input):
         return self.map(input, self.blurmap)
     
+    def save_heatmaps(self):
+        for idx in range(len(self.heat_map)):
+            sb.heatmap(self.heat_map[idx])
+            plt.savefig(f'Heatmap{idx+1}')
+            plt.clf()
+
     def show_heatmap(self):
         for item in self.heat_map:
             sb.heatmap(item)
             plt.show()
 
-    def show_blurmap(self, resize=None):
+    def show_blurmap(self, resize=500):
         for num in range(len(self.blur_map)):
             item = self.blur_map[num]
             shape = item.shape
