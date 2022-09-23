@@ -84,7 +84,6 @@ from Vizualizer import Visualizer
 visualizer = Visualizer(model, small_layers=True)
 heatmaps = visualizer.heatmap(x_test[0])
 visualizer.save_heatmaps()
-
 ```
 
 
