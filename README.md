@@ -1,6 +1,8 @@
 # VisualCNN
 
-A project created to create visual representations of what a CNN sees, combining all of the feature maps a convolution layer outputs into 1 visualizatio.
+A visualizer for the internals of a Convolutional Neural Network.
+
+Convolutional neural networks do not look at images the same way humans do, this project allows for the creation of a singular visual for hundreds of feature maps.
 
 # Example
 
@@ -62,6 +64,8 @@ Note:
  - Does not work with models in which a layers output is bigger (in shape) than the original image
  
  - Visualizer may be incompatible with models in which image is not square
+ 
+ - CNN must be made with tensorflow
 
 ## Dependencies
 - numpy v1.23.2
