@@ -8,21 +8,21 @@ Using Keras' MNIST dataset with a tensorflow model whose summary looks like the 
  
 ```Model: "sequential"
                    _________________________________________________________________
-                         Layer (type)            Output Shape              Param #
+                       Layer (type)            Output Shape              Param #
                    =================================================================
-                       conv2d (Conv2D)        (None, 28, 28, 32)            832
+                     conv2d (Conv2D)        (None, 28, 28, 32)            832
 
-                       conv2d_1 (Conv2D)      (None, 28, 28, 64)           18496
+                     conv2d_1 (Conv2D)      (None, 28, 28, 64)           18496
                                 
-                 max_pooling2d (MaxPooling2D) (None, 14, 14, 64)             0
+               max_pooling2d (MaxPooling2D) (None, 14, 14, 64)             0
  
-                      conv2d_2 (Conv2D)       (None, 14, 14, 64)           36928
+                    conv2d_2 (Conv2D)       (None, 14, 14, 64)           36928
 
-                      flatten (Flatten)         (None, 12544)                0
+                    flatten (Flatten)         (None, 12544)                0
 
-                       dense (Dense)            (None, 128)              1605760
+                     dense (Dense)            (None, 128)              1605760
 
-                       dense_1 (Dense)           (None, 10)                 1290
+                     dense_1 (Dense)           (None, 10)                 1290
 
                    =================================================================
                                         Total params: 1,663,306
