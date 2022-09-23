@@ -1,8 +1,6 @@
 # VisualCNN
 
-A visualizer for the internals of a Convolutional Neural Network.
-
-Convolutional neural networks do not look at images the same way humans do, this project allows for the creation of a singular visual for hundreds of feature maps.
+A project that creates singular visuals for Convolutional Neural Network layers.
 
 # Example
 
