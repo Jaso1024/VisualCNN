@@ -7,7 +7,7 @@ A project created to create visual representations of what a CNN sees, combining
 Using Keras' MNIST dataset with a tensorflow model whose summary looks like the following:
  
 ```Model: "sequential"
-                            _________________________________________________________________
+                    _________________________________________________________________
                                   Layer (type)            Output Shape              Param #
                             =================================================================
                                  conv2d (Conv2D)        (None, 28, 28, 32)            832
